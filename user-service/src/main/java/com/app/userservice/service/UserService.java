@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,12 +21,13 @@ public class UserService {
 
     public void createUser(UserRequest userRequest) {
         User user = User.builder()
-                .email(userRequest.getEmail())
+
                 .username(userRequest.getUsername())
                 .lastName(userRequest.getLastName())
                 .dateOfBirth(userRequest.getDateOfBirth())
-                .phoneNumber(userRequest.getPhoneNumber())
+                .email(userRequest.getEmail())
                 .password(userRequest.getPassword())
+                .phoneNumber(userRequest.getPhoneNumber())
                 .build();
         userRepository.save(user);
         log.info("User is saved");
@@ -44,12 +46,13 @@ public class UserService {
     }
     private UserResponse mapToUserResponse(User user) {
         return UserResponse.builder()
-                .email(user.getEmail())
+                .id(user.getId())
                 .username(user.getUsername())
                 .lastName(user.getLastName())
                 .dateOfBirth(user.getDateOfBirth())
-                .phoneNumber(user.getPhoneNumber())
+                .email(user.getEmail())
                 .password(user.getPassword())
+                .phoneNumber(user.getPhoneNumber())
                 .build();
     }
 }
