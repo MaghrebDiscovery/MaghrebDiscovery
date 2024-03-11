@@ -2,6 +2,7 @@ package com.app.commentaireservice.controller;
 
 import com.app.commentaireservice.dto.CommentaireRequest;
 import com.app.commentaireservice.dto.CommentaireResponse;
+import com.app.commentaireservice.model.Commentaire;
 import com.app.commentaireservice.service.CommentaireService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class CommentaireController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createCommentaire(@RequestBody CommentaireRequest commentaireRequest){
-        commentaireService.createCommentaire(commentaireRequest);
+    public Commentaire createCommentaire(@RequestBody CommentaireRequest commentaireRequest){
+        return commentaireService.createCommentaire(commentaireRequest);
     }
 
     @GetMapping

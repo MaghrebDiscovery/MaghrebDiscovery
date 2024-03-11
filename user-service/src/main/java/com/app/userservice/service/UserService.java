@@ -55,4 +55,9 @@ public class UserService {
                 .phoneNumber(user.getPhoneNumber())
                 .build();
     }
+
+    public Optional<UserResponse> getUserById(Long username) {
+        Optional<User> userOptional = userRepository.findById(username);
+        return userOptional.map(this::mapToUserResponse);
+    }
 }

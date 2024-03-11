@@ -18,7 +18,7 @@ public class Commentaire {
     @GeneratedValue
     private Long id ;
     private String content;
-    private String username;
+    private Long userId;
 
 
 }

@@ -11,6 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CommentaireRequest {
     private String content;
-    private String username;
-
+    private long user;
 }

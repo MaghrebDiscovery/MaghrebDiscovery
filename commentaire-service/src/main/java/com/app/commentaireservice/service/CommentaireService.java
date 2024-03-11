@@ -2,6 +2,7 @@ package com.app.commentaireservice.service;
 
 import com.app.commentaireservice.dto.CommentaireRequest;
 import com.app.commentaireservice.dto.CommentaireResponse;
+import com.app.commentaireservice.dto.userDto;
 import com.app.commentaireservice.model.Commentaire;
 import com.app.commentaireservice.repository.CommentaireRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -26,13 +27,13 @@ public class CommentaireService {
     private  RestTemplate restTemplate;
 
 
-    public void createCommentaire(CommentaireRequest commentaireRequest) {
+    public Commentaire createCommentaire(CommentaireRequest commentaireRequest) {
         Commentaire commentaire = Commentaire.builder()
                 .content(commentaireRequest.getContent())
-                .username(commentaireRequest.getUsername())
+                .userId(commentaireRequest.getUser())
                 .build();
-        commentaireRepository.save(commentaire);
         log.info("Commentaire is saved");
+        return commentaireRepository.saveAndFlush(commentaire);
     }
 
     public List<CommentaireResponse> getAllCommentaire() {
@@ -44,13 +45,13 @@ public class CommentaireService {
 
     private CommentaireResponse mapToCommentaireResponse(Commentaire commentaire) {
         String userServiceUrl = "http://localhost:3000/api/user";
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity(userServiceUrl + "/{username}", String.class, commentaire.getUsername());
-        String username = responseEntity.getBody();
+        ResponseEntity<userDto> responseEntity = restTemplate.getForEntity(userServiceUrl + "/{username}", userDto.class, commentaire.getUserId());
+        userDto username = responseEntity.getBody();
 
         return CommentaireResponse.builder()
+                .id(commentaire.getId())
                 .content(commentaire.getContent())
-                .username(commentaire.getUsername())
-                .username(username)
+                .user(username)
                 .build();
     }
 }

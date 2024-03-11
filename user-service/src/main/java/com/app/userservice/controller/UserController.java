@@ -33,8 +33,9 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<UserResponse> getUserByUsername(@PathVariable String username) {
-        Optional<UserResponse> userResponseOptional = userService.getUserByUsername(username);
+    public ResponseEntity<UserResponse> getUserById(@PathVariable Long username) {
+        System.out.println(username);
+        Optional<UserResponse> userResponseOptional = userService.getUserById(username);
         if (userResponseOptional.isPresent()) {
             return ResponseEntity.ok(userResponseOptional.get());
         } else {
