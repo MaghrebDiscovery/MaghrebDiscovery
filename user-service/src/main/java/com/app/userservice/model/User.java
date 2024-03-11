@@ -19,7 +19,7 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-    private String firstName;
+    private String username;
     private String lastName;
     private LocalDate dateOfBirth;
     private String email;
@@ -30,9 +30,9 @@ public class User {
 
     }
 
-    public User(Long id, String firstName, String lastName, LocalDate dateOfBirth, String email, String password, String phoneNumber) {
+    public User(Long id, String username, String lastName, LocalDate dateOfBirth, String email, String password, String phoneNumber) {
         this.id = id;
-        this.firstName = firstName;
+        this.username = username;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
