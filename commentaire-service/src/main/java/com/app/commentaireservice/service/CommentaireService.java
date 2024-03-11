@@ -43,7 +43,7 @@ public class CommentaireService {
     }
 
     private CommentaireResponse mapToCommentaireResponse(Commentaire commentaire) {
-        String userServiceUrl = "http://localhost:8084/api/user";
+        String userServiceUrl = "http://localhost:3000/api/user";
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(userServiceUrl + "/{username}", String.class, commentaire.getUsername());
         String username = responseEntity.getBody();
 
