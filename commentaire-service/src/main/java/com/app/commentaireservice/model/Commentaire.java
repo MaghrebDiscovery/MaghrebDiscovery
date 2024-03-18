@@ -5,7 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
-
 @Builder
 @Data
 @Getter
@@ -19,6 +18,8 @@ public class Commentaire {
     private Long id ;
     private String content;
     private Long userId;
+    @ManyToOne
+    private Region region;
 
 
 }

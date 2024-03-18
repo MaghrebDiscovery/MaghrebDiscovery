@@ -7,7 +7,6 @@ import com.app.commentaireservice.model.Commentaire;
 import com.app.commentaireservice.repository.CommentaireRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
