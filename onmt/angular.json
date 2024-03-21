@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "toureMaroc-fr": {
+    "onmt": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "toureMaroc-fr:build:production"
+              "browserTarget": "onmt:build:production"
             },
             "development": {
-              "browserTarget": "toureMaroc-fr:build:development"
+              "browserTarget": "onmt:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "toureMaroc-fr:build"
+            "browserTarget": "onmt:build"
           }
         },
         "test": {
