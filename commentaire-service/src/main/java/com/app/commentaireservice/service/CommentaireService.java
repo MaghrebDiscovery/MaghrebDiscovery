@@ -4,6 +4,7 @@ import com.app.commentaireservice.dto.CommentaireRequest;
 import com.app.commentaireservice.dto.CommentaireResponse;
 import com.app.commentaireservice.dto.userDto;
 import com.app.commentaireservice.model.Commentaire;
+import com.app.commentaireservice.model.Region;
 import com.app.commentaireservice.repository.CommentaireRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 @Service
 @Slf4j
 public class CommentaireService {
@@ -21,15 +21,14 @@ public class CommentaireService {
     @Autowired
     private CommentaireRepository commentaireRepository;
 
-
     @Autowired
-    private  RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
-
-    public Commentaire createCommentaire(CommentaireRequest commentaireRequest) {
+    public Commentaire createCommentaire(CommentaireRequest commentaireRequest, Region region) {
         Commentaire commentaire = Commentaire.builder()
                 .content(commentaireRequest.getContent())
                 .userId(commentaireRequest.getUser())
+                .region(region) 
                 .build();
         log.info("Commentaire is saved");
         return commentaireRepository.saveAndFlush(commentaire);

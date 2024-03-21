@@ -6,6 +6,8 @@ import com.app.userservice.model.User;
 import com.app.userservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class UserService {
     private final UserRepository userRepository;
+
+    private final PasswordEncoder passwordEncoder;
 
     public void createUser(UserRequest userRequest) {
         User user = User.builder()
@@ -33,12 +37,7 @@ public class UserService {
         log.info("User is saved");
     }
 
-    public List<UserResponse> getAllUser() {
-        List<User> users = userRepository.findAll();
-        return users.stream()
-                .map(this::mapToUserResponse)
-                .collect(Collectors.toList());
-    }
+
 
     public Optional<UserResponse> getUserByUsername(String username) {
         Optional<User> userOptional = userRepository.findByUsername(username);
@@ -60,4 +59,23 @@ public class UserService {
         Optional<User> userOptional = userRepository.findById(username);
         return userOptional.map(this::mapToUserResponse);
     }
+
+
+    public User authenticateUser(String email, String password) {
+        log.info("Authenticating user with email: {}", email);
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            log.info("User found with email: {}", email);
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                log.info("Password matches for user with email: {}", email);
+                return user;
+            } else {
+                log.info("Password does not match for user with email: {}", email);
+            }
+        } else {
+            log.info("User not found with email: {}", email);
+        }
+        return null;
+    }
+
 }

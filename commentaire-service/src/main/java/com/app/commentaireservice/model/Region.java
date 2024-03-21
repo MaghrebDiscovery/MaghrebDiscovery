@@ -20,7 +20,7 @@ public class Region {
     @GeneratedValue
     private Long id;
 
-    private String content;
+    private String ville;
 
     private String imageUrl;
     @OneToMany(mappedBy = "region")

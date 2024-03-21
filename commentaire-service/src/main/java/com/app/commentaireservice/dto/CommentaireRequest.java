@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class CommentaireRequest {
     private String content;
     private long user;
-    private long postId;
+    private long regionId;
 }

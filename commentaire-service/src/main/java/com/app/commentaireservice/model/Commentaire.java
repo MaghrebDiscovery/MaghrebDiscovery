@@ -1,9 +1,6 @@
 package com.app.commentaireservice.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 @Builder
 @Data
@@ -19,6 +16,7 @@ public class Commentaire {
     private String content;
     private Long userId;
     @ManyToOne
+    @JoinColumn(name = "region_id")
     private Region region;
 
 

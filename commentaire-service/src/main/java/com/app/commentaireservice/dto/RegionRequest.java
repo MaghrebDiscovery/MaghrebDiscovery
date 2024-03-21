@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RegionRequest {
 
-    private String content;
+    private String ville;
 
     private String imageUrl;
 }

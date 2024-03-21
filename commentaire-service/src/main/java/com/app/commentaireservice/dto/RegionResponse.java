@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class RegionResponse {
     private Long id;
 
-    private String content;
+    private String ville;
 
     private String imageUrl;
 }

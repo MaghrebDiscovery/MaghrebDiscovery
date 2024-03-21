@@ -13,4 +13,5 @@ public class CommentaireResponse {
     private Long id ;
     private String content;
     private userDto user;
+    private Long regionId;
 }

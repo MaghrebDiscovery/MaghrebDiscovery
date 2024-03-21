@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class UserController {
 
     private final UserService userService;
@@ -22,14 +23,8 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createCommentaire(@RequestBody UserRequest userRequest){
+    public void createuser(@RequestBody UserRequest userRequest){
         userService.createUser(userRequest);
-    }
-
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<UserResponse> getAllCommentaire(){
-        return userService.getAllUser();
     }
 
     @GetMapping("/{username}")
